@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Employee List</title>
+</head>
+<body>
+	<h1>Employee Management</h1>
+	<h1 th:text="${message}"></h1>
+	    <table border="2" width="70%" cellpadding="2">
+	        <tr>
+	            <th>Employee Id</th>
+	            <th>Name</th>
+	            <th>Age</th>
+	            <th>Salary</th>
+	            <th>Address</th>
+	            <th>Update</th>
+	            <th>Delete</th>
+	        </tr>
+    		<tr th:each="employee:${employees}">
+				<td th:text=${employee.empId}></td>
+				<td th:text=${employee.name}></td>
+				<td th:text=${employee.age}></td>
+				<td th:text=${employee.salary}></td>
+				<td th:text=${employee.address}></td>
+				<td><a th:href="@{/update_employee_form(empId=${employee.empId})}">EDIT</a></td>
+				<td><a th:href="@{/delete_employee(empId=${employee.empId})}" >DELETE</a></td> <!-- http://localhost:8080/delete_employee?empId=152 -->
+			</tr>
+	    </table>
+	<br/>
+	<a href="/create_employee_form">Create Employee</a>
+</body>
+</html>
